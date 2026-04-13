@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Title - Your Name Portfolio</title>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    /* === CSS Reset & Base === */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: #1a1a1a;
+      background: #ffffff;
+    }
+
+    /* === CSS Variables === */
+    :root {
+      --text-primary: #1a1a1a;
+      --text-secondary: #4a5568;
+      --text-muted: #718096;
+      --bg-page: #ffffff;
+      --bg-section: #f7fafc;
+      --bg-card: #ffffff;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --accent-light: #dbeafe;
+      --border: #e2e8f0;
+      --border-strong: #cbd5e0;
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    /* === Navigation === */
+    nav {
+      position: sticky;
+      top: 0;
+      background: var(--bg-page);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nav-container {
+      max-width: 72rem;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      transition: gap 0.2s;
+    }
+
+    .back-link:hover {
+      gap: 0.75rem;
+    }
+
+    .back-link i {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* === Layout === */
+    .container {
+      max-width: 72rem;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .container-narrow {
+      max-width: 48rem;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    section {
+      padding: 3rem 0;
+    }
+
+    .section-alt {
+      background: var(--bg-section);
+    }
+
+    /* === Project Hero === */
+    .project-hero {
+      padding: 3rem 0 2rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+
+    .project-type {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      padding: 0.375rem 1rem;
+      border-radius: 1.5rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      backdrop-filter: blur(10px);
+    }
+
+    .project-hero h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin: 0 0 1rem;
+      line-height: 1.2;
+    }
+
+    .project-hero .subtitle {
+      font-size: 1.25rem;
+      margin: 0 0 2rem;
+      opacity: 0.95;
+      line-height: 1.5;
+    }
+
+    .project-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .meta-item i {
+      width: 20px;
+      height: 20px;
+      opacity: 0.9;
+    }
+
+    .meta-label {
+      font-weight: 600;
+      margin-right: 0.25rem;
+    }
+
+    /* === Content Sections === */
+    .content-section {
+      margin-bottom: 3rem;
+    }
+
+    .content-section h2 {
+      font-size: 1.875rem;
+      font-weight: 700;
+      margin: 0 0 1rem;
+      color: var(--text-primary);
+    }
+
+    .content-section h3 {
+      font-size: 1.375rem;
+      font-weight: 700;
+      margin: 2rem 0 0.75rem;
+      color: var(--text-primary);
+    }
+
+    .content-section p {
+      font-size: 1.0625rem;
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+      line-height: 1.7;
+    }
+
+    .content-section ul {
+      font-size: 1.0625rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin: 1rem 0;
+      padding-left: 1.5rem;
+    }
+
+    .content-section li {
+      margin-bottom: 0.5rem;
+    }
+
+    /* === Info Cards === */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .info-card {
+      background: var(--bg-card);
+      padding: 1.5rem;
+      border-radius: 0.75rem;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .info-card h3 {
+      font-size: 1.125rem;
+      font-weight: 700;
+      margin: 0 0 1rem;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .info-card h3 i {
+      color: var(--accent);
+      width: 20px;
+      height: 20px;
+    }
+
+    .info-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 0.9375rem;
+    }
+
+    .info-card li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .info-card li:last-child {
+      border-bottom: none;
+    }
+
+    .info-card li i {
+      width: 16px;
+      height: 16px;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    /* === Callout Boxes === */
+    .callout {
+      background: var(--accent-light);
+      border-left: 4px solid var(--accent);
+      padding: 1.5rem;
+      border-radius: 0.5rem;
+      margin: 2rem 0;
+    }
+
+    .callout-success {
+      background: #d1fae5;
+      border-left-color: #16a34a;
+    }
+
+    .callout h3 {
+      font-size: 1.125rem;
+      font-weight: 700;
+      margin: 0 0 0.75rem;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .callout h3 i {
+      width: 20px;
+      height: 20px;
+    }
+
+    .callout p {
+      margin: 0;
+      font-size: 1rem;
+      color: var(--text-secondary);
+    }
+
+    /* === Image Placeholder === */
+    .image-placeholder {
+      background: var(--bg-section);
+      border: 2px dashed var(--border);
+      border-radius: 0.75rem;
+      padding: 3rem;
+      text-align: center;
+      margin: 2rem 0;
+      color: var(--text-muted);
+    }
+
+    .image-placeholder i {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 1rem;
+      opacity: 0.5;
+    }
+
+    .image-placeholder p {
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    /* === Tools List === */
+    .tools-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 1rem 0;
+    }
+
+    .tool-tag {
+      background: var(--bg-section);
+      padding: 0.5rem 1rem;
+      border-radius: 0.375rem;
+      font-size: 0.9375rem;
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .tool-tag i {
+      width: 16px;
+      height: 16px;
+      color: var(--accent);
+    }
+
+    /* === Navigation Footer === */
+    .project-nav {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      padding: 3rem 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .nav-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent);
+      color: white;
+      padding: 0.875rem 2rem;
+      border-radius: 0.5rem;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .nav-button:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .nav-button i {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* === Edit Markers === */
+    .edit-marker {
+      background: #fef3c7;
+      padding: 0.125rem 0.375rem;
+      border-radius: 0.25rem;
+      font-weight: 600;
+      color: #92400e;
+    }
+
+    /* === Responsive Design === */
+    @media (max-width: 768px) {
+      .project-hero h1 {
+        font-size: 1.875rem;
+      }
+
+      .project-hero .subtitle {
+        font-size: 1.0625rem;
+      }
+
+      .project-meta {
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* === Print Styles === */
+    @media print {
+      nav, .project-nav {
+        display: none;
+      }
+
+      body {
+        padding: 0;
+        font-size: 12pt;
+      }
+
+      section {
+        padding: 1rem 0;
+      }
+
+      .project-hero {
+        background: none;
+        color: var(--text-primary);
+        border-bottom: 2px solid var(--border);
+      }
+
+      .callout {
+        border: 1px solid var(--border);
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container">
+      <a href="../index.html" class="back-link">
+        <i data-lucide="arrow-left"></i>
+        Back to Portfolio
+      </a>
+    </div>
+  </nav>
+
+  <!-- Project Hero -->
+  <section class="project-hero">
+    <div class="container">
+      <span class="project-type"><span class="edit-marker">E-Learning Module / ILT / Job Aid / etc.</span></span>
+      <h1><span class="edit-marker">Project Title Goes Here</span></h1>
+      <p class="subtitle">
+        <span class="edit-marker">One-sentence project overview that captures the essence of what you created and its impact.</span>
+      </p>
+
+      <div class="project-meta">
+        <div class="meta-item">
+          <i data-lucide="calendar"></i>
+          <span><span class="meta-label">Completed:</span> <span class="edit-marker">Month Year</span></span>
+        </div>
+        <div class="meta-item">
+          <i data-lucide="clock"></i>
+          <span><span class="meta-label">Duration:</span> <span class="edit-marker">X weeks/months</span></span>
+        </div>
+        <div class="meta-item">
+          <i data-lucide="users"></i>
+          <span><span class="meta-label">Learners:</span> <span class="edit-marker">Target audience</span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Project Overview -->
+  <section>
+    <div class="container-narrow">
+      <div class="content-section">
+        <h2>Project Overview</h2>
+        <p>
+          <span class="edit-marker">Provide a comprehensive overview of the project. What was the context? What organization or client was this for? What was the scope of work? Include enough detail that readers understand the big picture before diving into specifics.</span>
+        </p>
+        <p>
+          <span class="edit-marker">Continue with additional context as needed. This is your chance to set the stage and help readers understand why this project mattered.</span>
+        </p>
+      </div>
+
+      <!-- Challenge -->
+      <div class="content-section">
+        <h2>The Challenge</h2>
+        <p>
+          <span class="edit-marker">Clearly articulate the problem or need that this project addressed. What gap existed? What prompted the organization to invest in this learning solution?</span>
+        </p>
+
+        <div class="callout">
+          <h3>
+            <i data-lucide="alert-circle"></i>
+            Problem Statement
+          </h3>
+          <p>
+            <span class="edit-marker">Summarize the core problem in 1-2 sentences. Make it specific and measurable if possible. Example: "Sales representatives were struggling with the new CRM system, leading to a 40% increase in data entry errors and customer service delays."</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Solution -->
+      <div class="content-section">
+        <h2>My Solution</h2>
+        <p>
+          <span class="edit-marker">Explain your approach to solving the problem. What instructional strategy did you choose and why? Walk readers through your thinking and design decisions.</span>
+        </p>
+
+        <h3>Design Approach</h3>
+        <p>
+          <span class="edit-marker">Detail the instructional design methodology you used. Was it ADDIE, SAM, or another approach? Explain how you applied it to this specific project.</span>
+        </p>
+
+        <h3>Learning Objectives</h3>
+        <p><span class="edit-marker">List the specific, measurable learning objectives. Example:</span></p>
+        <ul>
+          <li><span class="edit-marker">Upon completion, learners will be able to [specific action verb + task]</span></li>
+          <li><span class="edit-marker">Learners will demonstrate [skill] by [specific performance criteria]</span></li>
+          <li><span class="edit-marker">Add 3-5 clear, measurable objectives</span></li>
+        </ul>
+      </div>
+
+      <!-- Project Details -->
+      <div class="content-section">
+        <h2>Project Details</h2>
+        
+        <div class="info-grid">
+          <div class="info-card">
+            <h3>
+              <i data-lucide="target"></i>
+              Target Audience
+            </h3>
+            <ul>
+              <li><i data-lucide="check"></i> <span class="edit-marker">Primary audience description</span></li>
+              <li><i data-lucide="check"></i> <span class="edit-marker">Experience level</span></li>
+              <li><i data-lucide="check"></i> <span class="edit-marker">Prior knowledge</span></li>
+              <li><i data-lucide="check"></i> <span class="edit-marker">Learning preferences</span></li>
+            </ul>
+          </div>
+
+          <div class="info-card">
+            <h3>
+              <i data-lucide="wrench"></i>
+              Tools Used
+            </h3>
+            <ul>
+              <li><i data-lucide="check"></i> <span class="edit-marker">Authoring tool (e.g., Articulate Storyline)</span></li>
+              <li><i data-lucide="check"></i> <span class="edit-marker">Design software (e.g., Adobe Illustrator)</span></li>
+              <li><i data-lucide="check"></i> <span class="edit-marker">Additional tools</span></li>
+              <li><i data-lucide="check"></i> <span class="edit-marker">LMS or platform</span></li>
+            </ul>
+          </div>
+
+          <div class="info-card">
+            <h3>
+              <i data-lucide="layers"></i>
+              Deliverables
+            </h3>
+            <ul>
+              <li><i data-lucide="check"></i> <span class="edit-marker">Main learning module</span></li>
+              <li><i data-lucide="check"></i> <span class="edit-marker">Assessments/quizzes</span></li>
+              <li><i data-lucide="check"></i> <span class="edit-marker">Job aids or resources</span></li>
+              <li><i data-lucide="check"></i> <span class="edit-marker">Additional materials</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Development Process -->
+      <div class="content-section">
+        <h2>Development Process</h2>
+        <p>
+          <span class="edit-marker">Walk readers through your development process. Include key milestones, iterations, and how you incorporated feedback. This demonstrates your systematic approach and collaboration skills.</span>
+        </p>
+
+        <h3>Storyboarding & Prototyping</h3>
+        <p>
+          <span class="edit-marker">Describe your storyboarding process. Did you create low-fidelity or high-fidelity mockups? How did you validate your design before full development?</span>
+        </p>
+
+        <div class="image-placeholder">
+          <i data-lucide="image"></i>
+          <p><strong>Add screenshot or image here</strong></p>
+          <p>Example: Storyboard sample, interface mockup, or prototype screenshot</p>
+        </div>
+
+        <h3>Content Development</h3>
+        <p>
+          <span class="edit-marker">Explain how you developed the content. Did you work with subject matter experts? What was your process for ensuring accuracy and engagement?</span>
+        </p>
+
+        <h3>Review & Iteration</h3>
+        <p>
+          <span class="edit-marker">Describe your review process. How did you incorporate stakeholder feedback? What changes did you make during iteration?</span>
+        </p>
+      </div>
+
+      <!-- Key Features -->
+      <div class="content-section">
+        <h2>Key Features & Interactions</h2>
+        <p>
+          <span class="edit-marker">Highlight the most interesting or innovative aspects of your design. What made this learning experience engaging and effective?</span>
+        </p>
+
+        <div class="image-placeholder">
+          <i data-lucide="image"></i>
+          <p><strong>Add screenshot or image here</strong></p>
+          <p>Examples: Key screens, interactions, assessment questions, branching scenarios</p>
+        </div>
+
+        <p>
+          <span class="edit-marker">Include 2-3 paragraphs describing specific features, interactions, or design elements that made this project stand out. Use screenshots or media to illustrate.</span>
+        </p>
+
+        <div class="image-placeholder">
+          <i data-lucide="image"></i>
+          <p><strong>Add another screenshot here</strong></p>
+          <p>Show different aspects of your design</p>
+        </div>
+      </div>
+
+      <!-- Results & Impact -->
+      <div class="content-section">
+        <h2>Results & Impact</h2>
+        <p>
+          <span class="edit-marker">Share the outcomes of your project. Include both quantitative metrics (if available) and qualitative feedback. How did this learning solution impact the organization or learners?</span>
+        </p>
+
+        <div class="callout callout-success">
+          <h3>
+            <i data-lucide="trending-up"></i>
+            Measurable Results
+          </h3>
+          <p>
+            <span class="edit-marker">Example: "Post-implementation, error rates decreased by 35%, and learner satisfaction scores averaged 4.6/5. 92% of learners reported feeling confident using the new system within two weeks of training."</span>
+          </p>
+        </div>
+
+        <h3>Learner Feedback</h3>
+        <p>
+          <span class="edit-marker">Include specific quotes or feedback from learners if available. This adds authenticity and shows real-world impact.</span>
+        </p>
+        <ul>
+          <li><span class="edit-marker">"Quote from a learner about their experience"</span></li>
+          <li><span class="edit-marker">"Another testimonial or piece of feedback"</span></li>
+        </ul>
+
+        <h3>Lessons Learned</h3>
+        <p>
+          <span class="edit-marker">What did you learn from this project? What would you do differently next time? This shows reflection and continuous improvement mindset - qualities hiring managers value.</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Project Navigation -->
+  <section class="project-nav">
+    <a href="../index.html" class="nav-button">
+      <i data-lucide="arrow-left"></i>
+      Back to Portfolio
+    </a>
+  </section>
+
+  <!-- Initialize Lucide Icons -->
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>
