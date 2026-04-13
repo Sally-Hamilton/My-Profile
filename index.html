@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Name - Instructional Designer Portfolio</title>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    /* === CSS Reset & Base === */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: #1a1a1a;
+      background: #ffffff;
+    }
+
+    /* === CSS Variables === */
+    :root {
+      /* Text */
+      --text-primary: #1a1a1a;
+      --text-secondary: #4a5568;
+      --text-muted: #718096;
+      
+      /* Backgrounds */
+      --bg-page: #ffffff;
+      --bg-section: #f7fafc;
+      --bg-card: #ffffff;
+      
+      /* Accent */
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --accent-light: #dbeafe;
+      
+      /* Borders */
+      --border: #e2e8f0;
+      --border-strong: #cbd5e0;
+      
+      /* Shadows */
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    /* === Navigation === */
+    nav {
+      position: sticky;
+      top: 0;
+      background: var(--bg-page);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nav-container {
+      max-width: 72rem;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    /* === Layout === */
+    .container {
+      max-width: 72rem;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    section {
+      padding: 4rem 0;
+    }
+
+    .section-alt {
+      background: var(--bg-section);
+    }
+
+    /* === Hero Section === */
+    .hero {
+      padding: 6rem 0 5rem;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin: 0 0 0.5rem;
+      color: var(--text-primary);
+      line-height: 1.2;
+    }
+
+    .hero .tagline {
+      font-size: 1.5rem;
+      color: var(--text-secondary);
+      margin: 0 0 2rem;
+      font-weight: 400;
+    }
+
+    .hero .subtitle {
+      font-size: 1.125rem;
+      color: var(--text-muted);
+      margin: 0 0 2rem;
+      max-width: 42rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent);
+      color: white;
+      padding: 0.875rem 2rem;
+      border-radius: 0.5rem;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.0625rem;
+      transition: all 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .cta-button:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .cta-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: transparent;
+      color: var(--accent);
+      padding: 0.875rem 2rem;
+      border-radius: 0.5rem;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.0625rem;
+      transition: all 0.2s;
+      border: 2px solid var(--accent);
+      margin-left: 1rem;
+    }
+
+    .cta-secondary:hover {
+      background: var(--accent-light);
+    }
+
+    /* === Section Headers === */
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-header h2 {
+      font-size: 2.25rem;
+      font-weight: 700;
+      margin: 0 0 0.75rem;
+      color: var(--text-primary);
+    }
+
+    .section-header p {
+      font-size: 1.125rem;
+      color: var(--text-secondary);
+      margin: 0;
+      max-width: 42rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* === About Section === */
+    .about-content {
+      max-width: 48rem;
+      margin: 0 auto;
+    }
+
+    .about-content p {
+      font-size: 1.125rem;
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+
+    .expertise-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .expertise-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem;
+      background: var(--bg-card);
+      border-radius: 0.5rem;
+      border: 1px solid var(--border);
+    }
+
+    .expertise-item i {
+      color: var(--accent);
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+
+    .expertise-item span {
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    /* === Projects Grid === */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+
+    .project-card {
+      background: var(--bg-card);
+      border-radius: 0.75rem;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: all 0.3s;
+      border: 1px solid var(--border);
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .project-image {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 3rem;
+    }
+
+    .project-content {
+      padding: 1.5rem;
+    }
+
+    .project-type {
+      display: inline-block;
+      background: var(--accent-light);
+      color: var(--accent);
+      padding: 0.25rem 0.75rem;
+      border-radius: 1rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+
+    .project-card h3 {
+      font-size: 1.375rem;
+      font-weight: 700;
+      margin: 0 0 0.75rem;
+      color: var(--text-primary);
+    }
+
+    .project-card p {
+      color: var(--text-secondary);
+      margin: 0 0 1.5rem;
+      line-height: 1.6;
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      transition: gap 0.2s;
+    }
+
+    .project-link:hover {
+      gap: 0.75rem;
+    }
+
+    .project-link i {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* === Skills Section === */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .skill-category {
+      background: var(--bg-card);
+      padding: 2rem;
+      border-radius: 0.75rem;
+      border: 1px solid var(--border);
+    }
+
+    .skill-category h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin: 0 0 1.5rem;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .skill-category h3 i {
+      color: var(--accent);
+      width: 24px;
+      height: 24px;
+    }
+
+    .skill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .skill-tag {
+      background: var(--bg-section);
+      padding: 0.5rem 1rem;
+      border-radius: 0.375rem;
+      font-size: 0.9375rem;
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+    }
+
+    /* === Process Section === */
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .process-step {
+      text-align: center;
+      position: relative;
+    }
+
+    .process-number {
+      width: 64px;
+      height: 64px;
+      background: var(--accent);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 0 auto 1rem;
+    }
+
+    .process-step h3 {
+      font-size: 1.125rem;
+      font-weight: 700;
+      margin: 0 0 0.5rem;
+      color: var(--text-primary);
+    }
+
+    .process-step p {
+      font-size: 0.9375rem;
+      color: var(--text-secondary);
+      margin: 0;
+    }
+
+    /* === Contact Section === */
+    .contact-content {
+      max-width: 42rem;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .contact-methods {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-method {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 1.5rem;
+      background: var(--bg-card);
+      border-radius: 0.5rem;
+      text-decoration: none;
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+      transition: all 0.2s;
+    }
+
+    .contact-method:hover {
+      border-color: var(--accent);
+      background: var(--accent-light);
+    }
+
+    .contact-method i {
+      color: var(--accent);
+      width: 20px;
+      height: 20px;
+    }
+
+    /* === Footer === */
+    footer {
+      background: var(--text-primary);
+      color: white;
+      padding: 2rem 0;
+      text-align: center;
+    }
+
+    footer p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* === Responsive Design === */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero .tagline {
+        font-size: 1.25rem;
+      }
+
+      .nav-links {
+        gap: 1rem;
+      }
+
+      .cta-secondary {
+        margin-left: 0;
+        margin-top: 0.75rem;
+      }
+
+      .section-header h2 {
+        font-size: 1.75rem;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .process-steps {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-methods {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
+
+    /* === Print Styles === */
+    @media print {
+      nav, footer, .cta-button, .cta-secondary {
+        display: none;
+      }
+
+      body {
+        padding: 0;
+        font-size: 12pt;
+      }
+
+      section {
+        padding: 1rem 0;
+        page-break-inside: avoid;
+      }
+
+      .project-card {
+        page-break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid var(--border);
+      }
+    }
+
+    /* === Edit Markers === */
+    .edit-marker {
+      background: #fef3c7;
+      padding: 0.125rem 0.375rem;
+      border-radius: 0.25rem;
+      font-weight: 600;
+      color: #92400e;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container">
+      <a href="#" class="nav-logo">Your Name</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h1><span class="edit-marker">Your Name</span></h1>
+      <p class="tagline">Instructional Designer & Learning Experience Architect</p>
+      <p class="subtitle">
+        Creating engaging, effective learning experiences that drive measurable results and transform organizations through innovative instructional design.
+      </p>
+      <div>
+        <a href="#projects" class="cta-button">
+          View My Work
+          <i data-lucide="arrow-right"></i>
+        </a>
+        <a href="#contact" class="cta-secondary">
+          Get In Touch
+          <i data-lucide="mail"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="section-alt">
+    <div class="container">
+      <div class="section-header">
+        <h2>About Me</h2>
+        <p>Transforming complex concepts into engaging learning experiences</p>
+      </div>
+      
+      <div class="about-content">
+        <p>
+          <span class="edit-marker">Replace this paragraph with your professional bio. Include your background, years of experience, and what drives your passion for instructional design. Example: "With over 5 years of experience in corporate learning and development, I specialize in creating data-driven instructional solutions that improve employee performance and drive business results."</span>
+        </p>
+        
+        <p>
+          <span class="edit-marker">Add another paragraph about your approach or philosophy. Example: "I believe effective learning design starts with understanding the learner. By combining adult learning theory with modern technology, I create experiences that are not only educational but genuinely engaging and memorable."</span>
+        </p>
+
+        <div class="expertise-grid">
+          <div class="expertise-item">
+            <i data-lucide="graduation-cap"></i>
+            <span>E-Learning Development</span>
+          </div>
+          <div class="expertise-item">
+            <i data-lucide="users"></i>
+            <span>Instructor-Led Training</span>
+          </div>
+          <div class="expertise-item">
+            <i data-lucide="video"></i>
+            <span>Video-Based Learning</span>
+          </div>
+          <div class="expertise-item">
+            <i data-lucide="target"></i>
+            <span>Performance Support</span>
+          </div>
+          <div class="expertise-item">
+            <i data-lucide="bar-chart"></i>
+            <span>Learning Analytics</span>
+          </div>
+          <div class="expertise-item">
+            <i data-lucide="smartphone"></i>
+            <span>Mobile Learning</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Projects Section -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-header">
+        <h2>Featured Projects</h2>
+        <p>A selection of instructional design work showcasing different modalities and approaches</p>
+      </div>
+
+      <div class="projects-grid">
+        <!-- Project 1 -->
+        <article class="project-card">
+          <div class="project-image">
+            <i data-lucide="monitor" style="width: 64px; height: 64px;"></i>
+          </div>
+          <div class="project-content">
+            <span class="project-type">E-Learning Module</span>
+            <h3><span class="edit-marker">Project Title 1</span></h3>
+            <p>
+              <span class="edit-marker">Brief description of this project. What was the challenge? What solution did you create? What were the results? Keep it concise - 2-3 sentences.</span>
+            </p>
+            <a href="projects/project1.html" class="project-link">
+              View Case Study
+              <i data-lucide="arrow-right"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="project-card">
+          <div class="project-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+            <i data-lucide="presentation" style="width: 64px; height: 64px;"></i>
+          </div>
+          <div class="project-content">
+            <span class="project-type">Instructor-Led Training</span>
+            <h3><span class="edit-marker">Project Title 2</span></h3>
+            <p>
+              <span class="edit-marker">Brief description of this project. Focus on the learning objectives, your approach, and the impact it had on learners or the organization.</span>
+            </p>
+            <a href="projects/project2.html" class="project-link">
+              View Case Study
+              <i data-lucide="arrow-right"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="project-card">
+          <div class="project-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+            <i data-lucide="book-open" style="width: 64px; height: 64px;"></i>
+          </div>
+          <div class="project-content">
+            <span class="project-type">Job Aid / Quick Reference</span>
+            <h3><span class="edit-marker">Project Title 3</span></h3>
+            <p>
+              <span class="edit-marker">Describe this performance support tool or job aid. Explain the problem it solved and how it helps learners in the moment of need.</span>
+            </p>
+            <a href="projects/project3.html" class="project-link">
+              View Case Study
+              <i data-lucide="arrow-right"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 4 -->
+        <article class="project-card">
+          <div class="project-image" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+            <i data-lucide="video" style="width: 64px; height: 64px;"></i>
+          </div>
+          <div class="project-content">
+            <span class="project-type">Video Tutorial Series</span>
+            <h3><span class="edit-marker">Project Title 4</span></h3>
+            <p>
+              <span class="edit-marker">Describe your video-based learning project. Include the target audience, learning objectives, and production approach you used.</span>
+            </p>
+            <a href="projects/project4.html" class="project-link">
+              View Case Study
+              <i data-lucide="arrow-right"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 5 -->
+        <article class="project-card">
+          <div class="project-image" style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);">
+            <i data-lucide="layout-dashboard" style="width: 64px; height: 64px;"></i>
+          </div>
+          <div class="project-content">
+            <span class="project-type">Blended Learning Program</span>
+            <h3><span class="edit-marker">Project Title 5</span></h3>
+            <p>
+              <span class="edit-marker">Explain this comprehensive learning program. How did you combine different modalities? What was the curriculum design approach?</span>
+            </p>
+            <a href="projects/project5.html" class="project-link">
+              View Case Study
+              <i data-lucide="arrow-right"></i>
+            </a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills & Tools Section -->
+  <section id="skills" class="section-alt">
+    <div class="container">
+      <div class="section-header">
+        <h2>Skills & Tools</h2>
+        <p>Technical expertise and instructional design competencies</p>
+      </div>
+
+      <div class="skills-grid">
+        <div class="skill-category">
+          <h3>
+            <i data-lucide="wrench"></i>
+            Authoring Tools
+          </h3>
+          <div class="skill-list">
+            <span class="skill-tag">Articulate Storyline</span>
+            <span class="skill-tag">Articulate Rise</span>
+            <span class="skill-tag">Adobe Captivate</span>
+            <span class="skill-tag">Camtasia</span>
+            <span class="skill-tag">Vyond</span>
+            <span class="edit-marker skill-tag">Add your tools</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h3>
+            <i data-lucide="palette"></i>
+            Design & Media
+          </h3>
+          <div class="skill-list">
+            <span class="skill-tag">Adobe Creative Suite</span>
+            <span class="skill-tag">Canva</span>
+            <span class="skill-tag">Figma</span>
+            <span class="skill-tag">Video Editing</span>
+            <span class="skill-tag">Graphic Design</span>
+            <span class="edit-marker skill-tag">Add more</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h3>
+            <i data-lucide="database"></i>
+            LMS & Technology
+          </h3>
+          <div class="skill-list">
+            <span class="skill-tag">SCORM</span>
+            <span class="skill-tag">xAPI / Tin Can</span>
+            <span class="skill-tag">Moodle</span>
+            <span class="skill-tag">Canvas</span>
+            <span class="skill-tag">Microsoft Teams</span>
+            <span class="edit-marker skill-tag">Add your LMS</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h3>
+            <i data-lucide="lightbulb"></i>
+            Methodologies
+          </h3>
+          <div class="skill-list">
+            <span class="skill-tag">ADDIE</span>
+            <span class="skill-tag">SAM</span>
+            <span class="skill-tag">Bloom's Taxonomy</span>
+            <span class="skill-tag">Adult Learning Theory</span>
+            <span class="skill-tag">Kirkpatrick Model</span>
+            <span class="edit-marker skill-tag">Add more</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Section -->
+  <section id="process">
+    <div class="container">
+      <div class="section-header">
+        <h2>My Design Process</h2>
+        <p>A systematic approach to creating effective learning experiences</p>
+      </div>
+
+      <div class="process-steps">
+        <div class="process-step">
+          <div class="process-number">1</div>
+          <h3>Analyze</h3>
+          <p>Identify learning needs, audience characteristics, and performance gaps through stakeholder interviews and needs analysis.</p>
+        </div>
+
+        <div class="process-step">
+          <div class="process-number">2</div>
+          <h3>Design</h3>
+          <p>Define learning objectives, create assessments, and design the instructional strategy aligned with business goals.</p>
+        </div>
+
+        <div class="process-step">
+          <div class="process-number">3</div>
+          <h3>Develop</h3>
+          <p>Create storyboards, develop content, and build interactive learning materials using appropriate authoring tools.</p>
+        </div>
+
+        <div class="process-step">
+          <div class="process-number">4</div>
+          <h3>Implement</h3>
+          <p>Deploy learning solutions, train facilitators, and ensure smooth rollout across the organization.</p>
+        </div>
+
+        <div class="process-step">
+          <div class="process-number">5</div>
+          <h3>Evaluate</h3>
+          <p>Measure learning effectiveness, gather feedback, and continuously improve based on data and learner insights.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section-alt">
+    <div class="container">
+      <div class="section-header">
+        <h2>Let's Connect</h2>
+        <p>Interested in working together? I'd love to hear from you.</p>
+      </div>
+
+      <div class="contact-content">
+        <p style="font-size: 1.125rem; color: var(--text-secondary); margin-bottom: 2rem;">
+          Whether you're looking for an instructional designer for your team or want to discuss a learning project, feel free to reach out through any of these channels.
+        </p>
+
+        <div class="contact-methods">
+          <a href="mailto:your.email@example.com" class="contact-method">
+            <i data-lucide="mail"></i>
+            <span><span class="edit-marker">your.email@example.com</span></span>
+          </a>
+
+          <a href="https://linkedin.com/in/yourprofile" class="contact-method" target="_blank">
+            <i data-lucide="linkedin"></i>
+            <span>LinkedIn Profile</span>
+          </a>
+
+          <a href="#" class="contact-method" onclick="alert('Add link to your resume PDF'); return false;">
+            <i data-lucide="file-text"></i>
+            <span>Download Resume</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 <span class="edit-marker">Your Name</span>. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Initialize Lucide Icons -->
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>
